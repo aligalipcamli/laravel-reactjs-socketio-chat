@@ -72,4 +72,5 @@
         </form>
     </div>
 </div>
+<div id="example"></div>
 @stop
