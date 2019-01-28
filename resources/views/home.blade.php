@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'LaraChat - Laravel, ReactJS & Socket.io Chat')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>LaraChat</h1>
 @stop
 
 @section('content')
