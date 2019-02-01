@@ -42759,15 +42759,15 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-header with-border"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        class: "box-title"
+        className: "box-title"
       }, "Example Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        class: "box-tools pull-right"
+        className: "box-tools pull-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        class: "btn btn-box-tool",
+        className: "btn btn-box-tool",
         "data-widget": "collapse"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        class: "fa fa-minus"
+        className: "fa fa-minus"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-body"
       }, "I'm an example component!"));
