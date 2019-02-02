@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "jeroennoten/laravel-adminlte": "^1.24",
         "laravel/framework": "5.7.*",
+        "laravel/horizon": "^2.0",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
