@@ -25,6 +25,8 @@
         "sass-loader": "^7.1.0"
     },
     "dependencies": {
-        "laravel-echo-server": "^1.5.0"
+        "laravel-echo": "^1.5.2",
+        "laravel-echo-server": "^1.5.0",
+        "socket.io-client": "^2.2.0"
     }
 }
