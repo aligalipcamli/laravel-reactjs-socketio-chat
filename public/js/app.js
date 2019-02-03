@@ -42773,13 +42773,20 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ChatBox).call(this, props));
     _this.state = {
-      messages: messages
+      messages: []
     };
     _this.handleChatFormSubmit = _this.handleChatFormSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(ChatBox, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        messages: messages
+      });
+    }
+  }, {
     key: "handleChatFormSubmit",
     value: function handleChatFormSubmit(message) {
       var _user = JSON.parse(this.props.user);

@@ -30,9 +30,15 @@ export default class ChatBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: messages
+            messages: []
         };
         this.handleChatFormSubmit = this.handleChatFormSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            messages: messages
+        });
     }
 
     handleChatFormSubmit(message) {
