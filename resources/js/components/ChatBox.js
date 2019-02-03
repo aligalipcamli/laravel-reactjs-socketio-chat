@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ChatMessages from './ChatMessages';
 import ChatForm from './ChatForm';
+import Echo from 'laravel-echo';
+import Socketio from 'socket.io-client';
 
 export default class ChatBox extends Component {
     constructor(props) {
@@ -18,6 +20,22 @@ export default class ChatBox extends Component {
                 messages: response.data
             });
         });
+        let echo = new Echo({
+              broadcaster: 'socket.io',
+              client: Socketio,
+              host: window.location.hostname + ':6001'
+        });
+        echo.private('chat')
+         .listen('MessageSent', (e) => {
+           console.log("Listening...", e);
+           console.log(this.state.messages);
+           this.setState({
+               messages: this.state.messages.concat({
+                 message: e.message.message,
+                 user: e.user
+               })
+           });
+         });
     }
 
     handleChatFormSubmit(message) {

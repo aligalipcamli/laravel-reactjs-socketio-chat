@@ -10,3 +10,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 laravel-echo-server.lock
+laravel-echo-server.json
