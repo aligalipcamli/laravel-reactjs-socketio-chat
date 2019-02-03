@@ -42868,16 +42868,16 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ChatMessages.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/ChatMessages.js ***!
-  \*************************************************/
+/***/ "./resources/js/components/ChatMessage.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/ChatMessage.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatMessages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatMessage; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -42903,6 +42903,80 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var ChatMessage =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ChatMessage, _Component);
+
+  function ChatMessage() {
+    _classCallCheck(this, ChatMessage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ChatMessage).apply(this, arguments));
+  }
+
+  _createClass(ChatMessage, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.props.index % 2 == 0 ? 'direct-chat-msg' : 'direct-chat-msg right'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "direct-chat-info clearfix"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "direct-chat-name pull-left"
+      }, this.props.message.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "direct-chat-timestamp pull-right"
+      }, this.props.message.timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-3x fa-user direct-chat-img"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "direct-chat-text"
+      }, this.props.message.message));
+    }
+  }]);
+
+  return ChatMessage;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatMessages.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ChatMessages.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatMessages; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ChatMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatMessage */ "./resources/js/components/ChatMessage.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
 var ChatMessages =
 /*#__PURE__*/
 function (_Component) {
@@ -42915,57 +42989,41 @@ function (_Component) {
   }
 
   _createClass(ChatMessages, [{
+    key: "listMessages",
+    value: function listMessages(messages) {
+      var items = [];
+
+      for (var i in messages) {
+        items.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: i,
+          index: i,
+          message: messages[i]
+        }));
+      }
+
+      return items;
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-msg"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-info clearfix"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-name pull-left"
-      }, "Alexander Pierce"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-timestamp pull-right"
-      }, "23 Jan 2:00 pm")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-3x fa-user direct-chat-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-text"
-      }, "Is this template really for free? That's unbelievable!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-msg right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-info clearfix"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-name pull-right"
-      }, "Sarah Bullock"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-timestamp pull-left"
-      }, "23 Jan 2:05 pm")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-3x fa-user direct-chat-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-text"
-      }, "You better believe it!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-msg"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-info clearfix"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-name pull-left"
-      }, "Alexander Pierce"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-timestamp pull-right"
-      }, "23 Jan 5:37 pm")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-3x fa-user direct-chat-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-text"
-      }, "Working with AdminLTE on a great new app! Wanna join?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-msg right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-info clearfix"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-name pull-right"
-      }, "Sarah Bullock"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-timestamp pull-left"
-      }, "23 Jan 6:10 pm")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-3x fa-user direct-chat-img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-text"
-      }, "I would love to.")));
+      var messages = [{
+        name: 'Alexander Pierce',
+        timestamp: '23 Jan 2:00 pm',
+        message: 'Is this template really for free? That\'s unbelievable!'
+      }, {
+        name: 'Sarah Bullock',
+        timestamp: '23 Jan 2:05 pm',
+        message: 'You better believe it!'
+      }, {
+        name: 'Alexander Pierce',
+        timestamp: '23 Jan 5:37 pm',
+        message: 'Working with AdminLTE on a great new app! Wanna join?'
+      }, {
+        name: 'Sarah Bullock',
+        timestamp: '23 Jan 6:10 pm',
+        message: 'I would love to.'
+      }];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.listMessages(messages));
     }
   }]);
 
