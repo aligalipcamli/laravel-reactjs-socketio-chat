@@ -15,7 +15,3 @@ export default class ChatForm extends Component {
         );
     }
 }
-
-if (document.getElementById('chat-form')) {
-    ReactDOM.render(<ChatForm />, document.getElementById('chat-form'));
-}

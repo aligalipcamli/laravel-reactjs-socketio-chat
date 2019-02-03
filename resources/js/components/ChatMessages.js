@@ -49,7 +49,3 @@ export default class ChatMessages extends Component {
         );
     }
 }
-
-if (document.getElementById('chat-messages')) {
-    ReactDOM.render(<ChatMessages />, document.getElementById('chat-messages'));
-}
