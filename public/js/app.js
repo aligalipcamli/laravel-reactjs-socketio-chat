@@ -52837,6 +52837,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ChatForm).call(this, props));
     _this.handleOnSubmit = _this.handleOnSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleKeyPress = _this.handleKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -52845,6 +52846,14 @@ function (_Component) {
     value: function handleOnSubmit() {
       this.props.onChatFormSubmit(document.getElementById('message').value);
       document.getElementById('message').value = '';
+    }
+  }, {
+    key: "handleKeyPress",
+    value: function handleKeyPress(event) {
+      if (event.key == 'Enter') {
+        event.preventDefault();
+        this.handleOnSubmit();
+      }
     }
   }, {
     key: "render",
@@ -52859,7 +52868,9 @@ function (_Component) {
         id: "message",
         name: "message",
         placeholder: "Type Message ...",
-        className: "form-control"
+        className: "form-control",
+        onKeyPress: this.handleKeyPress,
+        autocomplete: "off"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "input-group-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
