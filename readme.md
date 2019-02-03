@@ -1,3 +1,55 @@
+## Install LaraChat
+```
+git clone https://github.com/aligalipcamli/laravel-reactjs-socketio-chat.git
+```
+```
+cd laravel-reactjs-socketio-chat
+```
+```
+curl -sS https://getcomposer.org/installer | php
+```
+```
+php composer.phar install
+```
+```
+php composer.phar run-script all
+```
+Set database connection in .env file. For sqlite, make sure you write the absolute path.
+```
+php artisan migrate
+```
+```
+npm install
+```
+```
+php artisan serve
+```
+It tries to serve on port 8000. Open a new tab in the terminal and in the root directory, type:
+```
+./node_modules/laravel-echo-server/bin/server.js init
+```
+Steps should look like these:
+```
+? Do you want to run this server in development mode? Yes
+? Which port would you like to serve from? 6001
+? Which database would you like to use to store presence channel members? redis
+? Enter the host of your Laravel authentication server. http://localhost:8000
+? Will you be serving on http or https? http
+? Do you want to generate a client ID/Key for HTTP API? Yes
+? Do you want to setup cross domain access to the API? No
+? What do you want this config to be saved as? laravel-echo-server.json
+appId: 0bd9a970d761cae2
+key: ba6e6627e0ef39847a72adb81caf0a2f
+Configuration file saved. Run laravel-echo-server start to run server.
+
+```
+laravel-echo-server.json file is created. Beware that the port of the laravel authentication server is 8000 when artisan is served as default.
+```
+./node_modules/laravel-echo-server/bin/server.js start
+```
+Open http://localhost:8000 in the browser.
+
+---
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
