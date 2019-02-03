@@ -61,7 +61,6 @@
             "@php artisan key:generate --ansi"
         ],
         "all": [
-            "@post-autoload-dump",
             "@post-root-package-install",
             "@post-create-project-cmd"
         ]
