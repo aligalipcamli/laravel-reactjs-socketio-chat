@@ -42814,7 +42814,8 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-messages"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        messages: this.state.messages
+        messages: this.state.messages,
+        user: this.props.user
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -42972,13 +42973,13 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.props.index % 2 == 0 ? 'direct-chat-msg' : 'direct-chat-msg right'
+        className: this.props.username != this.props.message.name ? 'direct-chat-msg' : 'direct-chat-msg right'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-info clearfix"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-name pull-left"
+        className: this.props.username != this.props.message.name ? 'direct-chat-name pull-left' : 'direct-chat-name pull-right'
       }, this.props.message.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "direct-chat-timestamp pull-right"
+        className: this.props.username != this.props.message.name ? 'direct-chat-timestamp pull-right' : 'direct-chat-timestamp pull-left'
       }, this.props.message.timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-3x fa-user direct-chat-img"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -43050,7 +43051,7 @@ function (_Component) {
       for (var i in messages) {
         items.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessage__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: i,
-          index: i,
+          username: JSON.parse(this.props.user).name,
           message: messages[i]
         }));
       }

@@ -60,7 +60,7 @@ export default class ChatBox extends Component {
                 </div>
                 <div className="box-body">
                     <div className="direct-chat-messages">
-                        <ChatMessages messages={this.state.messages} />
+                        <ChatMessages messages={this.state.messages} user={this.props.user} />
                     </div>
                 </div>
                 <div className="box-footer">
