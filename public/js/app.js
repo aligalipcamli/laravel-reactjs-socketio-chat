@@ -52692,6 +52692,7 @@ function (_Component) {
           messages: response.data
         });
       });
+      this.scrollToBottom();
       var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_4__["default"]({
         broadcaster: 'socket.io',
         client: socket_io_client__WEBPACK_IMPORTED_MODULE_5___default.a,
@@ -52708,6 +52709,11 @@ function (_Component) {
           })
         });
       });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.scrollToBottom();
     }
   }, {
     key: "handleChatFormSubmit",
@@ -52727,8 +52733,18 @@ function (_Component) {
       });
     }
   }, {
+    key: "scrollToBottom",
+    value: function scrollToBottom() {
+      var scrollHeight = this.messageList.scrollHeight;
+      var height = this.messageList.clientHeight;
+      var maxScrollTop = scrollHeight - height;
+      this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box box-primary direct-chat direct-chat-primary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -52746,7 +52762,10 @@ function (_Component) {
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "direct-chat-messages"
+        className: "direct-chat-messages",
+        ref: function ref(div) {
+          _this4.messageList = div;
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
         messages: this.state.messages,
         user: this.props.user

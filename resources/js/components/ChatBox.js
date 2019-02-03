@@ -20,6 +20,7 @@ export default class ChatBox extends Component {
                 messages: response.data
             });
         });
+        this.scrollToBottom();
         let echo = new Echo({
               broadcaster: 'socket.io',
               client: Socketio,
@@ -38,6 +39,10 @@ export default class ChatBox extends Component {
          });
     }
 
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
     handleChatFormSubmit(message) {
         var _message = {
             message: message,
@@ -49,6 +54,13 @@ export default class ChatBox extends Component {
               messages: this.state.messages.concat(_message)
           });
         });
+    }
+
+    scrollToBottom() {
+          const scrollHeight = this.messageList.scrollHeight;
+          const height = this.messageList.clientHeight;
+          const maxScrollTop = scrollHeight - height;
+          this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
     }
 
     render() {
@@ -64,7 +76,7 @@ export default class ChatBox extends Component {
                     </div>
                 </div>
                 <div className="box-body">
-                    <div className="direct-chat-messages">
+                    <div className="direct-chat-messages" ref={(div) => { this.messageList = div; }}>
                         <ChatMessages messages={this.state.messages} user={this.props.user} />
                     </div>
                 </div>
