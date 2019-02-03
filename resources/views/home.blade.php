@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-<div id="chat-box"></div>
+<div id="chat-box" data-user="{{ Auth::user() }}"></div>
 @stop

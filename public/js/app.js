@@ -42731,31 +42731,68 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
 
+
+var messages = [{
+  name: 'Alexander Pierce',
+  timestamp: '23 Jan 2:00 pm',
+  message: 'Is this template really for free? That\'s unbelievable!'
+}, {
+  name: 'Sarah Bullock',
+  timestamp: '23 Jan 2:05 pm',
+  message: 'You better believe it!'
+}, {
+  name: 'Alexander Pierce',
+  timestamp: '23 Jan 5:37 pm',
+  message: 'Working with AdminLTE on a great new app! Wanna join?'
+}, {
+  name: 'Sarah Bullock',
+  timestamp: '23 Jan 6:10 pm',
+  message: 'I would love to.'
+}];
 
 var ChatBox =
 /*#__PURE__*/
 function (_Component) {
   _inherits(ChatBox, _Component);
 
-  function ChatBox() {
+  function ChatBox(props) {
+    var _this;
+
     _classCallCheck(this, ChatBox);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ChatBox).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ChatBox).call(this, props));
+    _this.state = {
+      messages: messages
+    };
+    _this.handleChatFormSubmit = _this.handleChatFormSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
   }
 
   _createClass(ChatBox, [{
+    key: "handleChatFormSubmit",
+    value: function handleChatFormSubmit(message) {
+      var _user = JSON.parse(this.props.user);
+
+      this.setState({
+        messages: this.state.messages.concat({
+          name: _user.name,
+          timestamp: new Date().toString(),
+          message: message
+        })
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -42776,9 +42813,13 @@ function (_Component) {
         className: "box-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-messages"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessages__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        messages: this.state.messages
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        onChatFormSubmit: this.handleChatFormSubmit
+      })));
     }
   }]);
 
@@ -42788,7 +42829,9 @@ function (_Component) {
 
 
 if (document.getElementById('chat-box')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChatBox, null), document.getElementById('chat-box'));
+  var component = document.getElementById('chat-box');
+  var props = Object.assign({}, component.dataset);
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChatBox, props), component);
 }
 
 /***/ }),
@@ -42817,13 +42860,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -42833,13 +42876,22 @@ var ChatForm =
 function (_Component) {
   _inherits(ChatForm, _Component);
 
-  function ChatForm() {
+  function ChatForm(props) {
+    var _this;
+
     _classCallCheck(this, ChatForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ChatForm).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ChatForm).call(this, props));
+    _this.handleOnSubmit = _this.handleOnSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
   }
 
   _createClass(ChatForm, [{
+    key: "handleOnSubmit",
+    value: function handleOnSubmit() {
+      this.props.onChatFormSubmit(document.getElementById('message').value);
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -42849,6 +42901,7 @@ function (_Component) {
         className: "input-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        id: "message",
         name: "message",
         placeholder: "Type Message ...",
         className: "form-control"
@@ -42856,7 +42909,8 @@ function (_Component) {
         className: "input-group-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        className: "btn btn-warning btn-flat"
+        className: "btn btn-warning btn-flat",
+        onClick: this.handleOnSubmit
       }, "Send"))));
     }
   }]);
@@ -43006,24 +43060,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var messages = [{
-        name: 'Alexander Pierce',
-        timestamp: '23 Jan 2:00 pm',
-        message: 'Is this template really for free? That\'s unbelievable!'
-      }, {
-        name: 'Sarah Bullock',
-        timestamp: '23 Jan 2:05 pm',
-        message: 'You better believe it!'
-      }, {
-        name: 'Alexander Pierce',
-        timestamp: '23 Jan 5:37 pm',
-        message: 'Working with AdminLTE on a great new app! Wanna join?'
-      }, {
-        name: 'Sarah Bullock',
-        timestamp: '23 Jan 6:10 pm',
-        message: 'I would love to.'
-      }];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.listMessages(messages));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.listMessages(this.props.messages));
     }
   }]);
 
