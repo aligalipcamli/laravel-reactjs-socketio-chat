@@ -42743,23 +42743,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
-var messages = [{
-  name: 'Alexander Pierce',
-  timestamp: '23 Jan 2:00 pm',
-  message: 'Is this template really for free? That\'s unbelievable!'
-}, {
-  name: 'Sarah Bullock',
-  timestamp: '23 Jan 2:05 pm',
-  message: 'You better believe it!'
-}, {
-  name: 'Alexander Pierce',
-  timestamp: '23 Jan 5:37 pm',
-  message: 'Working with AdminLTE on a great new app! Wanna join?'
-}, {
-  name: 'Sarah Bullock',
-  timestamp: '23 Jan 6:10 pm',
-  message: 'I would love to.'
-}];
 
 var ChatBox =
 /*#__PURE__*/
@@ -42782,21 +42765,29 @@ function (_Component) {
   _createClass(ChatBox, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.setState({
-        messages: messages
+      var _this2 = this;
+
+      axios.get('/messages').then(function (response) {
+        _this2.setState({
+          messages: response.data
+        });
       });
     }
   }, {
     key: "handleChatFormSubmit",
     value: function handleChatFormSubmit(message) {
-      var _user = JSON.parse(this.props.user);
+      var _this3 = this;
 
-      this.setState({
-        messages: this.state.messages.concat({
-          name: _user.name,
-          timestamp: new Date().toString(),
-          message: message
-        })
+      var _message = {
+        message: message,
+        user: JSON.parse(this.props.user)
+      };
+      axios.post('/messages', _message).then(function (response) {
+        console.log(response.data.status);
+
+        _this3.setState({
+          messages: _this3.state.messages.concat(_message)
+        });
       });
     }
   }, {
@@ -42980,14 +42971,14 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.props.username != this.props.message.name ? 'direct-chat-msg' : 'direct-chat-msg right'
+        className: this.props.username != this.props.message.user.name ? 'direct-chat-msg' : 'direct-chat-msg right'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-info clearfix"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: this.props.username != this.props.message.name ? 'direct-chat-name pull-left' : 'direct-chat-name pull-right'
-      }, this.props.message.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: this.props.username != this.props.message.name ? 'direct-chat-timestamp pull-right' : 'direct-chat-timestamp pull-left'
-      }, this.props.message.timestamp)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: this.props.username != this.props.message.user.name ? 'direct-chat-name pull-left' : 'direct-chat-name pull-right'
+      }, this.props.message.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: this.props.username != this.props.message.user.name ? 'direct-chat-timestamp pull-right' : 'direct-chat-timestamp pull-left'
+      }, this.props.message.created_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-3x fa-user direct-chat-img"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-text"

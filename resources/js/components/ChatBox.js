@@ -3,29 +3,6 @@ import ReactDOM from 'react-dom';
 import ChatMessages from './ChatMessages';
 import ChatForm from './ChatForm';
 
-const messages = [
-    {
-        name: 'Alexander Pierce',
-        timestamp: '23 Jan 2:00 pm',
-        message: 'Is this template really for free? That\'s unbelievable!'
-    },
-    {
-        name: 'Sarah Bullock',
-        timestamp: '23 Jan 2:05 pm',
-        message: 'You better believe it!'
-    },
-    {
-        name: 'Alexander Pierce',
-        timestamp: '23 Jan 5:37 pm',
-        message: 'Working with AdminLTE on a great new app! Wanna join?'
-    },
-    {
-        name: 'Sarah Bullock',
-        timestamp: '23 Jan 6:10 pm',
-        message: 'I would love to.'
-    }
-];
-
 export default class ChatBox extends Component {
     constructor(props) {
         super(props);
@@ -36,19 +13,23 @@ export default class ChatBox extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            messages: messages
+        axios.get('/messages').then(response => {
+            this.setState({
+                messages: response.data
+            });
         });
     }
 
     handleChatFormSubmit(message) {
-        var _user = JSON.parse(this.props.user);
-        this.setState({
-            messages: this.state.messages.concat({
-                name: _user.name,
-                timestamp: new Date().toString(),
-                message: message
-            })
+        var _message = {
+            message: message,
+            user: JSON.parse(this.props.user)
+        };
+        axios.post('/messages', _message).then(response => {
+          console.log(response.data.status);
+          this.setState({
+              messages: this.state.messages.concat(_message)
+          });
         });
     }
 
