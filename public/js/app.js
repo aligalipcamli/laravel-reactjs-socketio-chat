@@ -52844,6 +52844,7 @@ function (_Component) {
     key: "handleOnSubmit",
     value: function handleOnSubmit() {
       this.props.onChatFormSubmit(document.getElementById('message').value);
+      document.getElementById('message').value = '';
     }
   }, {
     key: "render",

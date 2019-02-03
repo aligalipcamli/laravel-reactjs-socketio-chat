@@ -9,6 +9,7 @@ export default class ChatForm extends Component {
 
     handleOnSubmit() {
         this.props.onChatFormSubmit(document.getElementById('message').value);
+        document.getElementById('message').value = '';
     }
 
     render() {
