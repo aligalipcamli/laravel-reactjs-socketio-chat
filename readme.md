@@ -1,4 +1,5 @@
-## Install LaraChat
+## LaraChat Installation
+Redis is required.
 ```
 git clone https://github.com/aligalipcamli/laravel-reactjs-socketio-chat.git
 ```
