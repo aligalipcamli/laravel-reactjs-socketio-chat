@@ -6,7 +6,7 @@ export default class ChatMessages extends Component {
     listMessages(messages) {
         var items = [];
         for (var i in messages) {
-            items.push(<ChatMessage key={i} username={JSON.parse(this.props.user).name} message={messages[i]} />);
+            items.push(<ChatMessage key={i} username={JSON.parse(this.props.user).nickname} message={messages[i]} />);
         }
         return items;
     }

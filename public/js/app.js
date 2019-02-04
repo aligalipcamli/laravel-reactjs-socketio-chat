@@ -52699,9 +52699,6 @@ function (_Component) {
         host: window.location.hostname + ':6001'
       });
       echo.private('chat').listen('MessageSent', function (e) {
-        console.log("Listening...", e);
-        console.log(_this2.state.messages);
-
         _this2.setState({
           messages: _this2.state.messages.concat({
             message: e.message.message,
@@ -52938,13 +52935,13 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.props.username != this.props.message.user.name ? 'direct-chat-msg' : 'direct-chat-msg right'
+        className: this.props.username != this.props.message.user.nickname ? 'direct-chat-msg' : 'direct-chat-msg right'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "direct-chat-info clearfix"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: this.props.username != this.props.message.user.name ? 'direct-chat-name pull-left' : 'direct-chat-name pull-right'
-      }, this.props.message.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: this.props.username != this.props.message.user.name ? 'direct-chat-timestamp pull-right' : 'direct-chat-timestamp pull-left'
+        className: this.props.username != this.props.message.user.nickname ? 'direct-chat-name pull-left' : 'direct-chat-name pull-right'
+      }, this.props.message.user.nickname), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: this.props.username != this.props.message.user.nickname ? 'direct-chat-timestamp pull-right' : 'direct-chat-timestamp pull-left'
       }, this.props.message.created_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-3x fa-user direct-chat-img"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -53016,7 +53013,7 @@ function (_Component) {
       for (var i in messages) {
         items.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatMessage__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: i,
-          username: JSON.parse(this.props.user).name,
+          username: JSON.parse(this.props.user).nickname,
           message: messages[i]
         }));
       }

@@ -28,8 +28,6 @@ export default class ChatBox extends Component {
         });
         echo.private('chat')
          .listen('MessageSent', (e) => {
-           console.log("Listening...", e);
-           console.log(this.state.messages);
            this.setState({
                messages: this.state.messages.concat({
                  message: e.message.message,
